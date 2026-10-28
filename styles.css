@@ -1,0 +1,426 @@
+@font-face {
+  font-family: "Comfortaa";
+  src: local("Comfortaa"), url("../fonts/Comfortaa-Regular.ttf");
+}
+
+/* 1. Custom properties */
+:root {
+  --blue: #1E2EA8;
+  --red: #E93426;
+  --border-blue: #737ee0;
+  --page-width: 880px;
+  --page-gutter: 20px;
+}
+
+/* 2. Box-sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 3. Base styles */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--blue);
+  font-family: "Comfortaa", sans-serif;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 4. Typography and links */
+a {
+  color: var(--blue);
+}
+
+p {
+  margin-block: 0 1em;
+  font-size: 1.25rem;
+}
+
+.here {
+  color: var(--red);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+/* 5. Component styles */
+/* Header, navigation, gallery, stockists, footer, lightbox */
+.site-header {
+  width: min(100% - 2 * var(--page-gutter), 920px);
+  min-height: 190px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 28px;
+}
+
+.brand {
+  display: block;
+  width: 72px;
+  flex: 0 0 auto;
+}
+
+.brand img {
+  width: 100%;
+  height: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4.5vw, 56px);
+}
+
+.site-nav a {
+  font-size: 18px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-underline-offset: 3px;
+}
+
+main {
+  /* width: min(100% - 2 * var(--page-gutter), var(--page-width)); */
+    width: min(100% - 2 * var(--page-gutter), 920px);
+
+  margin: 6px auto 56px;
+}
+
+.print-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.print-card {
+  min-width: 0;
+  border: 1.5px solid var(--border-blue);
+  padding: 10px;
+  background: #fff;
+}
+
+.print-card a {
+  display: block;
+}
+
+.print-card img {
+  width: 100%;
+  height: auto;
+}
+
+/* Make the thumbnail button look like the existing card. */
+.print-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.print-open img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Keep keyboard users aware of which print/link is focused. */
+.print-card a:focus-visible,
+.site-nav a:focus-visible,
+.brand:focus-visible,
+.footer-brand:focus-visible,
+.email-link:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.stockists h2,
+.stockists address,
+.stockists li {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.stockists {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stockists li {
+  margin-bottom: 1em;
+}
+
+/* p.stockists-sidenote {
+  font-size: .5rem;
+} */
+
+.site-footer {
+  min-height: 148px;
+  padding: 14px 20px 22px;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.footer-brand {
+  display: block;
+  width: 44px;
+  margin-bottom: 2px;
+}
+
+.footer-brand img {
+  width: 100%;
+  height: auto;
+}
+
+.email-link {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.copyright {
+  margin: 0;
+  font-size: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Full-screen lightbox. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 60px 70px;
+  border: 0;
+  background: #fff;
+  color: #080808;
+  overflow: hidden;
+}
+
+.lightbox[open] {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 24px;
+}
+
+.lightbox::backdrop {
+  background: rgb(255 255 255 / 96%);
+}
+
+.lightbox-figure {
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.lightbox-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: min(78vh, 900px);
+  touch-action: none;
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox button {
+  font: inherit;
+  color: var(--blue);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  /* font-size: 36px !important;
+  line-height: 1; */
+  width: 2.75rem;
+  height: auto;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  font-size: 34px !important;
+  padding: 12px 0;
+}
+
+.lightbox-counter {
+  font-size: 13px;
+  color: #555;
+}
+
+.lightbox button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* 6. Media queries */
+/* Mobile: hide the arrows and close using a vertical swipe. */
+@media (max-width: 769px) {
+  .lightbox {
+    padding: 64px 16px 28px;
+  }
+
+  .lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    display: none;
+  }
+
+  .lightbox-figure {
+    width: 100%;
+  }
+
+  .lightbox-media {
+    height: 78dvh;
+  }
+
+  .lightbox-close {
+    top: 16px;
+    right: 18px;
+  }
+}
+
+/* Desktop layout: three cards across, with more generous spacing. */
+@media (min-width: 770px) {
+  .site-header {
+    min-height: 190px;
+  }
+
+  .brand {
+    width: 72px;
+  }
+
+  main {
+    margin-top: 6px;
+    margin-bottom: 56px;
+  }
+
+  .print-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+  }
+
+  .print-card {
+    padding: 16px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+  .site-footer {
+    min-height: 148px;
+  }
+}
+
+/* Extra-small phones: retain the two-column gallery but reduce padding. */
+@media (max-width: 360px) {
+  :root {
+    --page-gutter: 12px;
+  }
+
+  .site-header {
+    min-height: 170px;
+  }
+
+  .brand {
+    width: 62px;
+  }
+
+  .site-nav {
+    gap: 18px;
+  }
+
+  .site-nav a {
+    font-size: 16px;
+  }
+
+  .print-gallery {
+    gap: 9px;
+  }
+
+  .print-card {
+    padding: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

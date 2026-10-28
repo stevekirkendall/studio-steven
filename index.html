@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Studio Steven – The Graphic Art of Illustrator Steven Kirkendall">
+  <title>Studio Steven | The Graphic Art of Illustrator Steven Kirkendall</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Studio Steven home">
+      <img src="assets/ss-logo-nav.svg" alt="Studio Steven">
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1 class="visually-hidden">Norwich prints by Studio Steven</h1>
+
+    <section class="print-gallery" aria-label="Norwich print collection">
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-comp-large.png"
+          aria-label="Enlarge Norwich Composite print"
+        >
+          <img
+            src="assets/norwich-comp.png"
+            alt="Illustrated Norwich Composite print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-city-hall-large.png"
+          aria-label="Enlarge Norwich City Hall print"
+        >
+          <img
+            src="assets/norwich-city-hall.png"
+            alt="Illustrated Norwich City Hall print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-castle-large.png"
+          aria-label="Enlarge Norwich Castle print"
+        >
+          <img
+            src="assets/norwich-castle.png"
+            alt="Illustrated Norwich Castle print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-elm-hill-large.png"
+          aria-label="Enlarge Norwich Elm Hill print"
+        >
+          <img
+            src="assets/norwich-elm-hill.png"
+            alt="Illustrated Norwich Elm Hill print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-lanes-large.png"
+          aria-label="Enlarge Norwich Lanes print"
+        >
+          <img
+            src="assets/norwich-lanes.png"
+            alt="Illustrated Norwich Lanes print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+      <article class="print-card">
+        <button
+          class="print-open"
+          type="button"
+          data-full="assets/norwich-forum-large.png"
+          aria-label="Enlarge Norwich Forum print"
+        >
+          <img
+            src="assets/norwich-forum.png"
+            alt="Illustrated Norwich Forum print"
+            loading="lazy"
+          >
+        </button>
+      </article>
+    </section>
+  </main>
+
+  <dialog class="lightbox" aria-label="Print viewer">
+  <button
+    class="lightbox-close"
+    type="button"
+    aria-label="Close image viewer"
+  >
+    <img
+    src="assets/close.svg"
+    alt="X to close lightbox"
+    >
+  </button>
+
+  <button
+    class="lightbox-prev"
+    type="button"
+    aria-label="Previous print"
+  >
+    <img
+    src="assets/chevron-prev.svg"
+    alt="Previous arrow"
+    >
+  </button>
+
+  <figure class="lightbox-figure">
+    <div class="lightbox-media">
+      <img class="lightbox-image" src="" alt="">
+    </div>
+    <figcaption class="lightbox-counter"></figcaption>
+  </figure>
+
+  <button
+    class="lightbox-next"
+    type="button"
+    aria-label="Next print"
+  >
+    <img
+    src="assets/chevron-next.svg"
+    alt="Next arrow"
+    >
+  </button>
+</dialog>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="/" aria-label="Studio Steven home">
+      <img src="assets/ss-logo-footer.svg" alt="">
+    </a>
+    <a class="email-link" href="mailto:hello@studiosteven.uk">hello@studiosteven.uk</a>
+    <p class="copyright">© <span id="year"></span> Studio Steven</p>
+  </footer>
+</body>
+</html>

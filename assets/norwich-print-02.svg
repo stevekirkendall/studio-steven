@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+<rect width="300" height="400" fill="#fff"/>
+<rect x="8" y="8" width="284" height="310" fill="#e9f4f2" stroke="#111" stroke-width="6"/>
+<path d="M8 190 L65 125 L112 178 L160 75 L220 178 L292 120 L292 318 L8 318Z" fill="#59b69c" stroke="#111" stroke-width="6"/>
+<path d="M8 245 Q35 220 62 245 T116 245 T170 245 T224 245 T292 245" fill="none" stroke="#111" stroke-width="7"/>
+<text x="150" y="355" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" font-weight="bold" fill="#080808">NORWICH</text>
+<text x="150" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#333">IMAGE PLACEHOLDER 02</text>
+</svg>
