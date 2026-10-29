@@ -29,16 +29,56 @@ galleryButtons.forEach((button, index) => {
 });
 
 // Update the enlarged image and its counter.
-function updateImage() {
+
+function updateImage(fade = false) {
   const button = galleryButtons[currentIndex];
   const thumbnail = button.querySelector("img");
+  const nextSrc = button.dataset.full;
+  const nextAlt = thumbnail.alt;
 
-  lightboxImage.src = button.dataset.full;
-  lightboxImage.alt = thumbnail.alt;
+  function applyImage() {
+    lightboxImage.src = nextSrc;
+    lightboxImage.alt = nextAlt;
 
-  counter.textContent =
-    `${currentIndex + 1} / ${galleryButtons.length}`;
+    counter.textContent =
+      `${currentIndex + 1} / ${galleryButtons.length}`;
+  }
+
+  // Opening the lightbox: show the image normally.
+  if (!fade) {
+    applyImage();
+    return;
+  }
+
+  // Preload the next image before starting the transition.
+  const preload = new Image();
+
+  preload.onload = () => {
+    lightboxImage.classList.add("is-changing");
+
+    setTimeout(() => {
+      // Wait for the fade-out before changing the image.
+      const showNewImage = () => {
+        lightboxImage.classList.remove("is-changing");
+        lightboxImage.removeEventListener("load", showNewImage);
+        lightboxImage.removeEventListener("error", showNewImage);
+      };
+
+      lightboxImage.addEventListener("load", showNewImage);
+      lightboxImage.addEventListener("error", showNewImage);
+
+      applyImage();
+    }, 150);
+  };
+
+  preload.onerror = () => {
+    // Still allow navigation if preloading fails.
+    applyImage();
+  };
+
+  preload.src = nextSrc;
 }
+
 
 // Move between images, looping at either end.
 function navigate(direction) {
@@ -46,7 +86,7 @@ function navigate(direction) {
     (currentIndex + direction + galleryButtons.length)
     % galleryButtons.length;
 
-  updateImage();
+  updateImage(true);
 }
 
 prevButton.addEventListener("click", () => navigate(-1));
