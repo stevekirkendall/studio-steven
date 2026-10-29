@@ -79,7 +79,7 @@ p {
 .here {
   font-family: "Comfortaa", sans-serif;
   font-size: clamp(12px, 1.8vw, 15px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
   text-decoration: none;
