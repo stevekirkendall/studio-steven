@@ -15,6 +15,7 @@ let lastFocusedButton = null;
 let startX = 0;
 let startY = 0;
 let isTouchGesture = false;
+let dismissedBySwipe = false;
 
 // Open the lightbox when a thumbnail is clicked.
 galleryButtons.forEach((button, index) => {
@@ -105,8 +106,17 @@ lightbox.addEventListener("click", (event) => {
 });
 
 // Restore focus to the thumbnail that opened it.
+// lightbox.addEventListener("close", () => {
+//   lastFocusedButton?.focus();
+// });
+
 lightbox.addEventListener("close", () => {
-  lastFocusedButton?.focus();
+  if (dismissedBySwipe) {
+    lastFocusedButton?.blur();
+    dismissedBySwipe = false;
+  } else {
+    lastFocusedButton?.focus();
+  }
 });
 
 // Keyboard navigation: left, right and Escape.
@@ -152,8 +162,9 @@ lightboxMedia.addEventListener("pointerup", (event) => {
     // Swipe left = next; swipe right = previous.
     navigate(deltaX < 0 ? 1 : -1);
   } else {
-    // Swipe up or down = close.
-    lightbox.close();
+  // Swipe up or down = close.
+  dismissedBySwipe = true;
+  lightbox.close();
   }
 });
 
