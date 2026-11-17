@@ -1,67 +1,146 @@
-/* 1. Custom properties */
+/** 1. Custom properties **/
+
 :root {
+
   --blue: #1E2EA8;
+
   --red: #E93426;
+
   --border-blue: #737ee0;
+
   --page-width: 880px;
+
   --page-gutter: 20px;
+
+  --header-open-height: 190px;
+  --header-compact-height: 100px;
+  --header-open-padding: 28px;
+  --header-compact-padding: 12px;
+  --header-scroll-range: 300px;
+
 }
 
-/* 2. Box-sizing reset */
+
+/** 2. Box-sizing reset **/
+
 *,
+
 *::before,
+
 *::after {
+
   box-sizing: border-box;
+
 }
 
-/* 3. Base styles */
+
+/** 3. Base styles **/
+
 html {
+
   color-scheme: light;
+
   scroll-behavior: smooth;
+
 }
+
 
 body {
+
   margin: 0;
+
   background: #fff;
+
   color: var(--blue);
+
   font-family: "Comfortaa", sans-serif;
+
   font-size: 1rem;
+
   line-height: 1.25;
+
 }
+
 
 img {
+
   display: block;
+
   max-width: 100%;
+
   height: auto;
+
 }
 
-/* 4. Typography and links */
+
+/** 4. Typography and links **/
+
 a {
+
   color: var(--blue);
+
 }
+
 
 p {
+
   margin-block: 0 1em;
+
   font-size: 1.25rem;
+
 }
 
-/* 5. Component styles */
-/* Header, navigation, gallery, stockists, footer, lightbox */
+
+/** 5. Component styles **/
+
+/** Header, navigation, gallery, stockists, footer, lightbox **/
+
+
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* Full-width white header background. */
+  width: 100%;
+  background-color: #fff;
+
+  /* Shadow appears as you scroll. */
+  animation: header-shadow linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 var(--header-scroll-range);
+}
+
+.site-header-inner {
+  /* Keep the existing responsive content width. */
   width: min(100% - 2 * var(--page-gutter), 920px);
-  min-height: 190px;
+  min-height: var(--header-open-height);
   margin-inline: auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-block: 28px;
+
+  padding-block: var(--header-open-padding);
+
+  /* Shrink from 190px → 100px as the page scrolls. */
+  animation: header-shrink linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 var(--header-scroll-range);
 }
 
 .brand {
+  --logo-open-width: 52px;
+  --logo-compact-width: 42px;
+
   display: block;
-  width: 52px;
+  width: var(--logo-open-width);
   flex: 0 0 auto;
+
+  animation: logo-shrink linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 var(--header-scroll-range);
 }
 
 .brand img {
@@ -69,453 +148,848 @@ p {
   height: auto;
 }
 
+
 .site-nav {
+
   display: flex;
+
   align-items: center;
+
   gap: clamp(24px, 4.5vw, 56px);
+
 }
+
 
 .site-nav a,
-.here {
-  font-family: "Comfortaa", sans-serif;
-  font-size: clamp(12px, 1.8vw, 15px);
-  font-weight: 700;
-  line-height: 1.2;
-  text-transform: uppercase;
-  text-decoration: none;
-}
 
 .here {
-  color: var(--red);
+
+  font-family: "Comfortaa", sans-serif;
+
+  font-size: clamp(12px, 1.8vw, 15px);
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
 }
+
+
+.here {
+
+  color: var(--red);
+
+}
+
 
 main {
-  /* width: min(100% - 2 * var(--page-gutter), var(--page-width)); */
+
+  /** width: min(100% - 2 * var(--page-gutter), var(--page-width)); **/
+
     width: min(100% - 2 * var(--page-gutter), 920px);
 
+
   margin: 6px auto 56px;
+
 }
+
 
 .print-gallery {
+
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 12px;
+
 }
+
 
 .print-card {
+
   min-width: 0;
+
   border: 1.5px solid var(--border-blue);
+
   padding: 10px;
+
   background: #fff;
+
 }
+
 
 .print-card a {
+
   display: block;
+
 }
+
 
 .print-card img {
+
   width: 100%;
+
   height: auto;
+
 }
 
-/* Make the thumbnail button look like the existing card. */
+
+/** Make the thumbnail button look like the existing card. **/
+
 .print-open {
+
   display: block;
+
   width: 100%;
+
   padding: 0;
+
   border: 0;
+
   background: none;
+
   cursor: zoom-in;
+
 }
+
 
 .print-open img {
+
   display: block;
+
   width: 100%;
+
   height: auto;
+
 }
+
 
 .content-grid {
+
   display: grid;
+
   grid-template-columns: 1fr;
+
   gap: 24px;
+
 }
 
-/* Keep keyboard users aware of which print/link is focused. */
+
+/** Keep keyboard users aware of which print/link is focused. **/
+
 .print-card a:focus-visible,
+
 .site-nav a:focus-visible,
+
 .brand:focus-visible,
+
 .footer-brand:focus-visible,
+
 .email-link:focus-visible {
+
   outline: 3px solid var(--blue);
+
   outline-offset: 4px;
+
 }
+
 
 .stockists h2,
+
 .stockists address,
+
 .stockists li {
+
   font-style: normal;
+
   font-weight: normal;
+
   font-size: 1.25rem;
+
   margin: 0;
+
 }
+
 
 .stockists {
+
   list-style: none;
+
   margin: 0;
+
   padding: 0;
+
 }
+
 
 .stockists li {
+
   margin-bottom: 1em;
+
 }
+
 
 .site-footer {
+
   min-height: 148px;
+
   padding: 14px 20px 22px;
+
   background: var(--blue);
+
   color: #fff;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 8px;
+
   text-align: center;
+
 }
+
 
 .footer-brand {
+
   display: block;
+
   width: 44px;
+
   margin-bottom: 2px;
+
 }
+
 
 .footer-brand img {
+
   width: 100%;
+
   height: auto;
+
 }
+
 
 .email-link {
+
   color: #fff;
+
   font-size: 16px;
+
   text-decoration: none;
+
 }
+
 
 .email-link:hover {
+
   text-decoration: underline;
+
   text-underline-offset: 3px;
+
 }
+
 
 .copyright {
+
   margin: 0;
+
   font-size: 12px;
+
 }
+
 
 .visually-hidden {
+
   position: absolute;
+
   width: 1px;
+
   height: 1px;
+
   padding: 0;
+
   margin: -1px;
+
   overflow: hidden;
+
   clip: rect(0, 0, 0, 0);
+
   white-space: nowrap;
+
   border: 0;
+
 }
 
-/* Full-screen lightbox. */
+
+/** Full-screen lightbox. **/
+
 .lightbox {
+
   position: fixed;
+
   inset: 0;
+
   width: 100%;
+
   max-width: none;
+
   height: 100%;
+
   max-height: none;
+
   margin: 0;
+
   padding: 60px 70px;
+
   border: 0;
+
   background: #fff;
+
   color: #080808;
+
   overflow: hidden;
+
 }
 
 
 .lightbox[open] {
+
   display: grid;
+
   grid-template-columns: 48px minmax(0, 1fr) 48px;
+
   grid-template-rows: minmax(0, 1fr) auto;
+
   align-items: center;
+
   gap: 24px;
+
 }
+
 
 .lightbox-prev {
+
   grid-column: 1;
+
   grid-row: 1;
+
 }
+
 
 .lightbox-figure {
+
   grid-column: 2;
+
   grid-row: 1;
+
 }
+
 
 .lightbox-next {
+
   grid-column: 3;
+
   grid-row: 1;
+
 }
 
+
 .lightbox-counter {
+
   grid-column: 2;
+
   grid-row: 2;
+
   justify-self: center;
+
 }
 
 
 .lightbox::backdrop {
+
   background: rgb(255 255 255 / 96%);
+
 }
+
 
 .lightbox-figure {
+
   margin: 0;
+
   min-width: 0;
+
   min-height: 0;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 12px;
+
 }
+
 
 .lightbox-media {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   width: 100%;
+
   height: min(78vh, 900px);
+
   touch-action: none;
+
 }
+
 
 .lightbox-image {
+
   display: block;
+
   max-width: 100%;
+
   max-height: 100%;
+
   width: auto;
+
   height: auto;
+
   object-fit: contain;
+
   user-select: none;
+
   -webkit-user-drag: none;
 
+
   border: 1px solid #1E2EA8;
+
   box-sizing: border-box;
 
+
   opacity: 1;
+
   transition: opacity 150ms ease-in-out;
+
 }
+
 
 .lightbox-image.is-changing {
+
   opacity: 0;
+
 }
+
 
 .lightbox button {
+
   font: inherit;
+
   color: var(--blue);
+
   background: transparent;
+
   border: 0;
+
   cursor: pointer;
+
 }
+
 
 .lightbox-close {
+
   position: absolute;
+
   top: 20px;
+
   right: 24px;
-  /* font-size: 36px !important;
-  line-height: 1; */
+
+  /** font-size: 36px !important;*
+
+*  line-height: 1; **/
+
   width: 2.75rem;
+
   height: auto;
+
 }
+
 
 .lightbox-prev,
+
 .lightbox-next {
+
   font-size: 34px !important;
+
   padding: 12px 0;
+
 }
 
+
 .lightbox-counter {
+
   font-size: 13px;
+
   color: var(--blue);
+
 }
 
 
 .lightbox button:focus-visible {
+
   outline: 3px solid var(--blue);
+
   outline-offset: 4px;
+
 }
+
 
 .lightbox button:focus:not(:focus-visible) {
+
   outline: none;
+
   box-shadow: none;
+
 }
 
 
-/* 6. Media queries */
+/** 6. Scroll-driven header animations **/
 
-/* Mobile lightbox layout */
+@keyframes header-shrink {
+  from {
+    min-height: var(--header-open-height);
+    padding-block: var(--header-open-padding);
+  }
+
+  to {
+    min-height: var(--header-compact-height);
+    padding-block: var(--header-compact-padding);
+  }
+}
+
+@keyframes logo-shrink {
+  from {
+    width: var(--logo-open-width);
+  }
+
+  to {
+    width: var(--logo-compact-width);
+  }
+}
+
+@keyframes header-shadow {
+  from {
+    box-shadow: 0 0 0 rgb(0 0 0 / 0%);
+  }
+
+  to {
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  }
+}
+
+/** 7. Media queries **/
+
+
+/** Mobile lightbox layout **/
+
 @media (max-width: 769px) {
 
-   .site-header {
-    min-height: 170px;
-    padding-block: 18px;
+
+  .site-header-inner {
+    --header-open-height: 170px;
+    --header-compact-height: 90px;
+    --header-open-padding: 18px;
+    --header-compact-padding: 10px;
   }
+
 
   .lightbox {
+
     padding: 64px 16px 28px;
+
   }
+
 
   .lightbox[open] {
+
     display: grid;
+
     grid-template-columns: 48px minmax(0, 1fr) 48px;
+
     grid-template-rows: minmax(0, 1fr) 64px;
+
     align-items: center;
+
     justify-items: center;
+
     gap: 0;
+
   }
 
-  /* Image occupies the full width above the controls */
+
+  /** Image occupies the full width above the controls **/
+
   .lightbox-figure {
+
     grid-column: 1 / -1;
+
     grid-row: 1;
+
     width: 100%;
+
     height: 100%;
+
     min-height: 0;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
   }
+
 
   .lightbox-media {
+
     width: 100%;
+
     height: 100%;
+
     min-height: 0;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     touch-action: none;
+
   }
+
 
   .lightbox-image {
+
     max-width: 100%;
+
     max-height: 100%;
+
     width: auto;
+
     height: auto;
+
     border: 1px solid #1E2EA8;
+
     box-sizing: border-box;
+
   }
 
-  /* Previous arrow */
+
+  /** Previous arrow **/
+
   .lightbox-prev {
+
     grid-column: 1;
+
     grid-row: 2;
+
     justify-self: start;
+
   }
 
-  /* Next arrow */
+
+  /** Next arrow **/
+
   .lightbox-next {
+
     grid-column: 3;
+
     grid-row: 2;
+
     justify-self: end;
+
   }
 
-  /* Image counter, centred between arrows */
+
+  /** Image counter, centred between arrows **/
+
   .lightbox-counter {
+
     grid-column: 2;
+
     grid-row: 2;
+
     justify-self: center;
+
     font-size: 13px;
+
     color: #1E2EA8;
+
   }
 
-  /* Arrow sizing */
+
+  /** Arrow sizing **/
+
   .lightbox-prev img,
+
   .lightbox-next img {
+
     display: block;
+
     width: 32px;
+
     height: 48px;
+
     object-fit: contain;
+
   }
 
-  /* Close button */
+
+  /** Close button **/
+
   .lightbox-close {
+
     top: 16px;
+
     right: 18px;
+
   }
+
 
 }
 
-/* Desktop layout: three cards across, with more generous spacing. */
+
+/** Desktop layout: three cards across, with more generous spacing. **/
+
 @media (min-width: 770px) {
-  .site-header {
-    min-height: 190px;
-  }
 
   .brand {
-    width: 62px;
+    --logo-open-width: 62px;
+    --logo-compact-width: 46px;
   }
+
 
   main {
+
     margin-top: 6px;
+
     margin-bottom: 56px;
+
   }
+
 
   .print-gallery {
+
     grid-template-columns: repeat(3, minmax(0, 1fr));
+
     gap: 19px;
+
   }
 
+
   .print-card {
+
     padding: 16px;
+
   }
+
 
   .content-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
-}
+  }
+
 
   .site-footer {
+
     min-height: 148px;
+
   }
+
 }
 
-/* Extra-small phones: retain the two-column gallery but reduce padding. */
+
+/** Extra-small phones: retain the two-column gallery but reduce padding. **/
+
 @media (max-width: 360px) {
+
   :root {
+
     --page-gutter: 12px;
+
   }
 
-  .site-header {
-    min-height: 170px;
-  }
 
   .brand {
+
     width: 62px;
+
   }
+
 
   .site-nav {
+
     gap: 18px;
+
   }
+
 
   .site-nav a {
+
     font-size: 16px;
+
   }
+
 
   .print-gallery {
+
     gap: 9px;
+
   }
+
 
   .print-card {
+
     padding: 6px;
+
   }
+
 }
 
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+  .site-header,
+  .site-header-inner,
+  .brand {
+    animation: none;
   }
+
+
 }
