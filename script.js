@@ -42,7 +42,15 @@ let isTouchGesture = false;
 let dismissedBySwipe = false;
 
 // Pages without a gallery still need the header and copyright year.
-if (lightbox && prevButton && nextButton && closeButton && lightboxMedia) {
+if (
+  lightbox &&
+  lightboxImage &&
+  lightboxMedia &&
+  closeButton &&
+  prevButton &&
+  nextButton &&
+  counter
+) {
 
 // Open the lightbox when a thumbnail is clicked.
 galleryButtons.forEach((button, index) => {
