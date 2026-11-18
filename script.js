@@ -1,3 +1,27 @@
+const header = document.querySelector(".site-header");
+const desktopQuery = window.matchMedia("(min-width: 770px)");
+
+function updateHeaderShadow() {
+  if (!header) return;
+
+  const scrolled = window.scrollY > 0;
+  const pageCanScroll =
+    document.documentElement.scrollHeight > window.innerHeight + 1;
+
+  // Desktop only shows the shadow once there is something to scroll.
+  const showShadow = desktopQuery.matches
+    ? scrolled && pageCanScroll
+    : scrolled;
+
+  header.classList.toggle("is-scrolled", showShadow);
+}
+
+updateHeaderShadow();
+window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+window.addEventListener("resize", updateHeaderShadow);
+window.addEventListener("load", updateHeaderShadow);
+desktopQuery.addEventListener("change", updateHeaderShadow);
+
 const galleryButtons = [
   ...document.querySelectorAll(".print-open")
 ];
@@ -16,6 +40,9 @@ let startX = 0;
 let startY = 0;
 let isTouchGesture = false;
 let dismissedBySwipe = false;
+
+// Pages without a gallery still need the header and copyright year.
+if (lightbox && prevButton && nextButton && closeButton && lightboxMedia) {
 
 // Open the lightbox when a thumbnail is clicked.
 galleryButtons.forEach((button, index) => {
@@ -171,6 +198,8 @@ lightboxMedia.addEventListener("pointerup", (event) => {
 lightboxMedia.addEventListener("pointercancel", () => {
   isTouchGesture = false;
 });
+
+}
 
 // Keep the copyright year current without changing the HTML each January.
 const year = document.querySelector("#year");
