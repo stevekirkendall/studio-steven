@@ -41,7 +41,7 @@ let startY = 0;
 let isTouchGesture = false;
 let dismissedBySwipe = false;
 
-// Pages without a gallery still need the header and copyright year.
+// About and Shop have no lightbox, so skip this setup there.
 if (
   lightbox &&
   lightboxImage &&
